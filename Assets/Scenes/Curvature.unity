@@ -44052,12 +44052,12 @@ MonoBehaviour:
   VALUES_MAX: 1.4
   VALUES_MIN2: 0
   VALUES_MAX2: 0
-  STEPS: 9
+  STEPS: 8
   STEPS2: 1
   TRIALS: 2
   TEST_TRIALS: 5
-  EXP_TYPE: 2
-  SKIP_SLIDES: 1
+  EXP_TYPE: 0
+  SKIP_SLIDES: 0
   insideUpdate: 0
   outsidePos: {x: 0, y: 0}
   outsideYaw: 0
@@ -55919,7 +55919,7 @@ MonoBehaviour:
   _monoscopic: 0
   _sharpenType: 0
   _disableRecording: 0
-  _enableDynamicResolution: 0
+  _enableDynamicResolution: 1
   minDynamicResolutionScale: 1
   maxDynamicResolutionScale: 1
   quest2MinDynamicResolutionScale: 0.7
