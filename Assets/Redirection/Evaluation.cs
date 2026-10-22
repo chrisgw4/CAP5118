@@ -88,11 +88,11 @@ public class Evaluation : MonoBehaviour
         // Initialize values
         State = ExperimentState.ES_READYQUESTION;
         resetPos = new Vector2(0, 0);
-        // resetYaw = 0;
+        resetYaw = 0;
         offsetPos = new Vector2(0, 0);
-        // offsetYaw = 0;
+        offsetYaw = 0;
         start_p = new Vector2(0, 0);
-        // start_yaw = 0;
+        start_yaw = 0;
 
         TotalTrials = STEPS * STEPS2 * TRIALS;
 
