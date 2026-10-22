@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/RedirectionExperiment.unity
     guid: 63414701fb9cecb44bb560215b894679
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Curvature.unity
     guid: bf8eae9b557ac361a80cc72d9d227e71
+  - enabled: 1
+    path: Assets/Scenes/Translation.unity
+    guid: 29b70e2496e34520abae37ed95a336fb
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 702d956c1f4533946a1a2c1ca62dd552, type: 2}
