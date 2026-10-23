@@ -171,29 +171,35 @@ public class RedirectionController : MonoBehaviour
 
     private void OnUpdatedAnchors(OVRCameraRig rig)
     {
-        Transform centerEye = rig.centerEyeAnchor;
-        Transform leftEye = rig.leftEyeAnchor;
-        Transform rightEye = rig.rightEyeAnchor;
-        Vector3 leftOffset = leftEye.localPosition - centerEye.localPosition;
-        Vector3 rightOffset = rightEye.localPosition - centerEye.localPosition;
+        // Converted Calculations to use the Camera Rig instead of CenterEye
+        // Allows for controllers to follow camera in the scene rather than be left behind when only moving CenterEye
 
-        evaluation.outsideYaw = centerEye.transform.eulerAngles.y * Mathf.Deg2Rad;
+        // Get centerEye from VR Camera Rig
+        Transform centerEye = rig.centerEyeAnchor;
+
+        // Calulate updated positions for evaluation
+        evaluation.outsideYaw = centerEye.eulerAngles.y * Mathf.Deg2Rad;
         evaluation.outsidePos = new Vector2(centerEye.localPosition.x, centerEye.localPosition.z);
         evaluation.insideUpdate = true;
 
         UpdateInternal();
 
-        Quaternion correctionRot = Quaternion.Euler(new Vector3(0, (evaluation.offsetYaw + evaluation.resetYaw) * Mathf.Rad2Deg, 0));
-        centerEye.localRotation = correctionRot * centerEye.localRotation;
+        // Calculate corrected rotations
+        Quaternion correctionRot = Quaternion.Euler(0, (evaluation.offsetYaw + evaluation.resetYaw) * Mathf.Rad2Deg, 0);
+        Quaternion correctionRotPos = Quaternion.Euler(0, evaluation.resetYaw * Mathf.Rad2Deg, 0);
+        
+        // Calculate new position
+        Vector3 centerPosOld = rig.transform.localPosition;
+        Vector3 centerPosNew = correctionRotPos * (centerPosOld + new Vector3(evaluation.offsetPos.x, 0, evaluation.offsetPos.y) + new Vector3(evaluation.resetPos.x, 0, evaluation.resetPos.y));
 
-        correctionRot = Quaternion.Euler(new Vector3(0, evaluation.resetYaw * Mathf.Rad2Deg, 0));
-        Vector3 centerPosOld = centerEye.localPosition;
-        Vector3 centerPosNew = centerPosOld + new Vector3(evaluation.offsetPos.x, 0, evaluation.offsetPos.y) + new Vector3(evaluation.resetPos.x, 0, evaluation.resetPos.y);
-        centerEye.localPosition = correctionRot * centerPosNew;
+        // Set the Camera Rig's position and rotation to new values
+        rig.transform.localRotation = correctionRot;
+        rig.transform.localPosition = centerPosNew - correctionRot * centerPosOld + new Vector3(0, 1.4f, 0); // Added Vector at end is for height placement
+
 
         if (evaluation.State == ExperimentState.ES_INSTRUCTION)
         {
-            centerEye.localPosition = new Vector3(0, 1000.0f, 0);
+            rig.transform.localPosition = new Vector3(0, 1000.0f, 0);
         }
 
         //if (leftEye != null)
