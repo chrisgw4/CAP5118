@@ -44498,7 +44498,7 @@ MonoBehaviour:
   STEPS: 9
   STEPS2: 1
   TRIALS: 2
-  TEST_TRIALS: 5
+  TEST_TRIALS: 3
   EXP_TYPE: 1
   SKIP_SLIDES: 1
   insideUpdate: 0
