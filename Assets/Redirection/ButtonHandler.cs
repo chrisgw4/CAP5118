@@ -109,12 +109,15 @@ public class ButtonHandler : MonoBehaviour
     {
         Debug.Log("A button pressed");
 
-        if (evaluation.State == ExperimentState.ES_QUESTION)
+        if (evaluation.State == ExperimentState.ES_PID)
+        {
+            evaluation.PressPidKey();
+        }
+        else if (evaluation.State == ExperimentState.ES_QUESTION)
         {
             evaluation.SubmitResponse();
         }
-
-        if (evaluation.State == ExperimentState.ES_READYQUESTION
+        else if (evaluation.State == ExperimentState.ES_READYQUESTION
             || evaluation.State == ExperimentState.ES_THANKYOU)
         {
             evaluation.StateChange();
@@ -146,6 +149,10 @@ public class ButtonHandler : MonoBehaviour
         {
             evaluation.AdjustResponse(-1);
         }
+        else if (evaluation.State == ExperimentState.ES_PID)
+        {
+            evaluation.MovePidSelection(-1, 0);
+        }
     }
 
     private void OnThumbstickRight()
@@ -156,15 +163,29 @@ public class ButtonHandler : MonoBehaviour
         {
             evaluation.AdjustResponse(1);
         }
+        else if (evaluation.State == ExperimentState.ES_PID)
+        {
+            evaluation.MovePidSelection(1, 0);
+        }
     }
 
     private void OnThumbstickUp()
     {
         Debug.Log("Thumbstick UP");
+
+        if (evaluation.State == ExperimentState.ES_PID)
+        {
+            evaluation.MovePidSelection(0, -1);
+        }
     }
 
     private void OnThumbstickDown()
     {
         Debug.Log("Thumbstick DOWN");
+
+        if (evaluation.State == ExperimentState.ES_PID)
+        {
+            evaluation.MovePidSelection(0, 1);
+        }
     }
 }

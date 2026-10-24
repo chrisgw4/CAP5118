@@ -44522,6 +44522,8 @@ MonoBehaviour:
     Value: 0
     Value2: 0
   ResponseSelection: 0
+  ParticipantID: 
+  PidSelectedKey: 4
   TotalTrials: 0
 --- !u!4 &1453692684
 Transform:
