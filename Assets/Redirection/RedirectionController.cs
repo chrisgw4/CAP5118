@@ -690,7 +690,7 @@ public class RedirectionController : MonoBehaviour
 
                             // Turn angle
                             float r2 = UnityEngine.Random.value; // in [0,1]
-                            e_maxDistance = evaluation.DISTANCE - 0.5f + 0.5f * r2;
+                            e_maxDistance = evaluation.DISTANCE; //- 0.5f + 0.5f * r2;
                         }
 
                         // Compute translation distance
