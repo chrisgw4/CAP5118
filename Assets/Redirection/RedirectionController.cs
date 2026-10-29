@@ -219,7 +219,7 @@ public class RedirectionController : MonoBehaviour
         if (font == null)
             font = Resources.GetBuiltinResource<Font>("Arial.ttf");
 
-        int optionCount = Evaluation.RESPONSE_MAX - Evaluation.RESPONSE_MIN + 1;
+        int optionCount = Evaluation.RESPONSE_MAX - Evaluation.RESPONSE_MIN;
         questionBoxes_ = new Image[optionCount];
         questionLabels_ = new Text[optionCount];
 
@@ -232,6 +232,11 @@ public class RedirectionController : MonoBehaviour
         for (int i = 0; i < optionCount; i++)
         {
             int value = Evaluation.RESPONSE_MIN + i;
+
+            if (value >= 0)
+            {
+                value += 1;
+            }
 
             GameObject boxGO = new GameObject("Answer " + value, typeof(RectTransform), typeof(Image));
             boxGO.transform.SetParent(questionUI_.transform, false);
@@ -270,6 +275,7 @@ public class RedirectionController : MonoBehaviour
             label.color = Color.black;
             label.text = value.ToString();
             questionLabels_[i] = label;
+        
         }
 
         CreateQuestionText(

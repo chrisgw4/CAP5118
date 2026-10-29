@@ -382,7 +382,14 @@ public class Evaluation : MonoBehaviour
             {
                 Trial trial = allTrials[i];
 
+                if (trial.Response >= 0)
+                {
+                    trial.Response += 1;
+                }
+
                 writer.WriteLine($"{trial.Value}\t{trial.Value2}\t{trial.Reaction}\t{trial.Response}");
+
+                print("RESPONSE: "); print(trial.Response);
             }
         }
 
