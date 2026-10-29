@@ -44500,7 +44500,7 @@ MonoBehaviour:
   TRIALS: 8
   TEST_TRIALS: 3
   EXP_TYPE: 1
-  SKIP_SLIDES: 0
+  SKIP_SLIDES: 1
   insideUpdate: 0
   outsidePos: {x: 0, y: 0}
   outsideYaw: 0
