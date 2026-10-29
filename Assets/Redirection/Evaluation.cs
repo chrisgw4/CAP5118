@@ -384,12 +384,13 @@ public class Evaluation : MonoBehaviour
 
                 if (trial.Response >= 0)
                 {
-                    trial.Response += 1;
+                    writer.WriteLine($"{trial.Value}\t{trial.Value2}\t{trial.Reaction}\t{trial.Response+1}");
+                    print("RESPONSE: "); print(trial.Response);
                 }
-
-                writer.WriteLine($"{trial.Value}\t{trial.Value2}\t{trial.Reaction}\t{trial.Response}");
-
-                print("RESPONSE: "); print(trial.Response);
+                else {
+                    writer.WriteLine($"{trial.Value}\t{trial.Value2}\t{trial.Reaction}\t{trial.Response}");
+                    print("RESPONSE: "); print(trial.Response);
+                }
             }
         }
 
